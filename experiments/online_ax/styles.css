@@ -1,0 +1,412 @@
+/* AX-specific presentation layered on shared.css + perception.css. */
+
+:root {
+  --pcj-page-max-width: 1120px;
+  --pcj-text-max-width: 980px;
+}
+
+/* Keep participant-facing screens spacious horizontally so laptop users do
+ * not have to scroll through avoidable line wrapping. Live trial surfaces
+ * remain separately width-constrained below. */
+.jspsych-content {
+  max-width: 1120px;
+}
+
+.pcj-friendly-panel {
+  padding: clamp(1.45rem, 2.6vw, 2rem);
+}
+
+.pcj-friendly-title {
+  max-width: 900px;
+}
+
+.pcj-study-lead {
+  max-width: 860px;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.pcj-guide-grid {
+  max-width: 900px;
+}
+
+.pcj-friendly-note {
+  max-width: 860px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Entry, welcome, consent, and participant code                              */
+/* -------------------------------------------------------------------------- */
+
+.pcj-entry-panel {
+  max-width: 900px;
+  text-align: center !important;
+}
+
+.pcj-entry-panel .pcj-title,
+.pcj-entry-panel .pcj-subtitle,
+.pcj-entry-panel .pcj-text {
+  text-align: center;
+}
+
+.pcj-entry-panel .pcj-form {
+  width: min(100%, 620px);
+  margin: 1.35rem auto 0;
+  text-align: left;
+}
+
+.pcj-entry-panel .pcj-input--code {
+  text-align: center;
+}
+
+.pcj-entry-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.35rem;
+}
+
+.pcj-entry-actions .jspsych-btn {
+  min-width: min(100%, 280px);
+}
+
+.ax-welcome-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin: 1.15rem auto 0.2rem;
+  border: 1px solid #cfe0ef;
+  border-radius: 50%;
+  background: #f2f7fc;
+  color: var(--pcj-primary-bg);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.ax-consent-box {
+  width: min(100%, 790px);
+  margin: 1.05rem auto 0;
+  box-sizing: border-box;
+  padding: 1rem 1.2rem;
+  border: 1px solid #dce7f0;
+  border-radius: 16px;
+  background: #f8fbfe;
+  color: #344d62;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.ax-consent-box p {
+  margin: 0.85rem 0 0;
+}
+
+.ax-participant-info-link {
+  display: block;
+  padding: 0.8rem 1rem;
+  border: 1px solid #c9dced;
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--pcj-primary-bg);
+  font-weight: 750;
+  text-align: center;
+  text-decoration: none;
+}
+
+.ax-participant-info-link:hover {
+  background: #f3f8fd;
+}
+
+.ax-participant-info-link span {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--pcj-muted-text-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.ax-participant-info-link--placeholder {
+  cursor: default;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Environment + volume preparation                                           */
+/* -------------------------------------------------------------------------- */
+
+/* On ordinary laptop/desktop widths, the spoken setup and confirmation list
+ * sit side-by-side. This retains every protocol condition without forcing a
+ * long vertical page. The layout stacks again on narrow screens. */
+.ax-preflight-panel {
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  grid-template-areas:
+    "kicker kicker"
+    "title title"
+    "lead lead"
+    "calibration conditions"
+    "blocked blocked";
+  column-gap: 1rem;
+  align-items: start;
+}
+
+.ax-preflight-panel > .pcj-study-kicker {
+  grid-area: kicker;
+}
+
+.ax-preflight-panel > .pcj-friendly-title {
+  grid-area: title;
+}
+
+.ax-preflight-panel > .pcj-study-lead {
+  grid-area: lead;
+}
+
+.ax-calibration-card {
+  grid-area: calibration;
+  width: 100%;
+  margin: 0.55rem 0 0;
+  box-sizing: border-box;
+  padding: 1.05rem 1.1rem;
+  border: 1px solid #d7e4ef;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fbfdff 0%, #f5f9fd 100%);
+  text-align: center;
+}
+
+.ax-calibration-card h2 {
+  margin: 0;
+  color: #263e52;
+  font-size: 1.08rem;
+}
+
+.ax-calibration-card p {
+  margin: 0.6rem auto 0;
+  max-width: 610px;
+  color: #4c6173;
+  line-height: 1.45;
+}
+
+.ax-calibration-button {
+  margin-top: 0.85rem;
+  padding: 0.72rem 1.05rem;
+  border: 1px solid #174a7d;
+  border-radius: 12px;
+  background: var(--pcj-primary-bg);
+  color: #ffffff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.96rem;
+  font-weight: 750;
+  box-shadow: 0 7px 16px rgba(31, 79, 130, 0.15);
+}
+
+.ax-calibration-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.ax-calibration-button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.ax-calibration-status {
+  min-height: 1.25rem;
+  margin-top: 0.6rem;
+  color: #45657f;
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
+.ax-calibration-warning {
+  margin-top: 0.65rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 11px;
+  background: #fff8e8;
+  color: #71551e;
+  font-size: 0.88rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.ax-condition-list {
+  grid-area: conditions;
+  display: grid;
+  gap: 0.52rem;
+  width: 100%;
+  margin: 0.55rem 0 0;
+}
+
+.ax-condition-row {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 0.68rem;
+  align-items: start;
+  box-sizing: border-box;
+  padding: 0.68rem 0.78rem;
+  border: 1px solid #e0e8ef;
+  border-radius: 13px;
+  background: #ffffff;
+  color: #344d62;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1.38;
+}
+
+.ax-condition-checkbox {
+  width: 18px;
+  height: 18px;
+  margin-top: 0.08rem;
+  accent-color: var(--pcj-primary-bg);
+}
+
+.ax-setup-blocked-note {
+  grid-area: blocked;
+  width: min(100%, 800px);
+  margin: 0.7rem auto 0;
+  color: var(--pcj-muted-text-color);
+  font-size: 0.83rem;
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Instructions and live AX trials                                            */
+/* -------------------------------------------------------------------------- */
+
+.ax-guide-choices {
+  max-width: 760px;
+  margin-top: 1rem;
+}
+
+.ax-listen-stage {
+  width: min(86vw, 520px);
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 2rem 1.4rem;
+  border: 1px solid var(--pcj-border-color);
+  border-radius: var(--pcj-radius-lg);
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow:
+    0 18px 48px rgba(31, 41, 51, 0.07),
+    0 2px 8px rgba(31, 41, 51, 0.035);
+  text-align: center;
+}
+
+.ax-sound-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid #d7e3ed;
+  border-radius: 999px;
+  background: #f5f9fc;
+  color: #47647d;
+  font-size: 0.82rem;
+  font-weight: 760;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.ax-listen-copy {
+  margin-top: 1rem;
+  color: #263e52;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  font-weight: 720;
+}
+
+.ax-response-panel {
+  width: min(90vw, 700px);
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: clamp(1.25rem, 3vw, 1.85rem);
+  border: 1px solid var(--pcj-border-color);
+  border-radius: var(--pcj-radius-lg);
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow:
+    0 18px 48px rgba(31, 41, 51, 0.08),
+    0 2px 8px rgba(31, 41, 51, 0.04);
+  text-align: center;
+}
+
+.ax-response-question {
+  max-width: 580px;
+  margin: 0.85rem auto 0;
+  color: #263e52;
+  font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+  font-weight: 760;
+  line-height: 1.35;
+}
+
+.ax-live-choices {
+  margin-top: 1rem;
+}
+
+.ax-live-choices .pcj-key-choice {
+  min-height: 112px;
+}
+
+.ax-response-wait {
+  margin-top: 0.85rem;
+  color: var(--pcj-muted-text-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.ax-isi-blank {
+  min-height: min(28vh, 180px);
+}
+
+#jspsych-audio-keyboard-response-stimulus,
+#jspsych-html-keyboard-response-stimulus {
+  width: 100%;
+}
+
+@media (max-width: 820px) {
+  .ax-preflight-panel {
+    display: block;
+    max-width: 760px;
+  }
+
+  .ax-calibration-card,
+  .ax-condition-list {
+    width: min(100%, 690px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ax-condition-list {
+    margin-top: 0.85rem;
+  }
+
+  .ax-setup-blocked-note {
+    margin-top: 0.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --pcj-page-max-width: 900px;
+    --pcj-text-max-width: 760px;
+  }
+
+  .pcj-friendly-panel {
+    padding: 1.15rem 0.95rem;
+  }
+
+  .ax-listen-stage,
+  .ax-response-panel,
+  .ax-calibration-card,
+  .ax-consent-box {
+    width: min(94vw, 700px);
+    padding: 1.05rem 0.9rem;
+  }
+
+  .ax-live-choices .pcj-key-choice {
+    min-height: 94px;
+  }
+
+  .ax-condition-row {
+    padding: 0.68rem 0.72rem;
+  }
+}

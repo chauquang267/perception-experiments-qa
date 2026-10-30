@@ -1,0 +1,758 @@
+/*
+ * shared.css
+ *
+ * Shared visual foundation for all prosody-contact-jspsych experiments.
+ *
+ * Used across:
+ *   - online perception tasks
+ *   - local production tasks
+ *   - stimulus-provider recording tasks
+ *
+ * Design principles:
+ *   - clean and minimally crowded
+ *   - high readability
+ *   - generous whitespace
+ *   - consistent buttons and message boxes
+ *   - no task-specific visual logic here
+ */
+
+
+/* -------------------------------------------------------------------------- */
+/* 1. Global layout and typography                                            */
+/* -------------------------------------------------------------------------- */
+
+:root {
+    --pcj-page-max-width: 900px;
+    --pcj-text-max-width: 760px;
+
+    --pcj-font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    --pcj-text-color: #1f2933;
+    --pcj-muted-text-color: #52616b;
+    --pcj-border-color: #d9e2ec;
+    --pcj-soft-bg: #f7f9fb;
+    --pcj-panel-bg: #ffffff;
+
+    --pcj-primary-bg: #1f4f82;
+    --pcj-primary-bg-hover: #183f68;
+    --pcj-primary-text: #ffffff;
+
+    --pcj-secondary-bg: #eef3f8;
+    --pcj-secondary-bg-hover: #dde8f2;
+    --pcj-secondary-text: #1f2933;
+
+    --pcj-error-bg: #fff1f2;
+    --pcj-error-border: #f2b8c0;
+    --pcj-error-text: #8f1d2c;
+
+    --pcj-success-bg: #eefbf3;
+    --pcj-success-border: #b8e2c7;
+    --pcj-success-text: #17643a;
+
+    --pcj-warning-bg: #fff8e8;
+    --pcj-warning-border: #efd38c;
+    --pcj-warning-text: #805500;
+
+    --pcj-radius-sm: 8px;
+    --pcj-radius-md: 14px;
+    --pcj-radius-lg: 20px;
+
+    --pcj-shadow-soft:
+        0 8px 28px rgba(31, 41, 51, 0.08);
+
+    --pcj-gap-sm: 0.75rem;
+    --pcj-gap-md: 1.25rem;
+    --pcj-gap-lg: 2rem;
+}
+
+/*
+html,
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    background: var(--pcj-soft-bg);
+    color: var(--pcj-text-color);
+    font-family: var(--pcj-font-family);
+}
+
+body {
+    line-height: 1.55;
+}
+
+.jspsych-display-element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 2rem 1.25rem;
+    background: var(--pcj-soft-bg);
+}
+
+.jspsych-content-wrapper {
+    width: 100%;
+}
+
+.jspsych-content {
+    max-width: var(--pcj-page-max-width);
+    margin: 0 auto;
+}
+*/
+
+
+/* -------------------------------------------------------------------------- */
+/* 2. General experiment containers                                           */
+/* -------------------------------------------------------------------------- */
+
+.pcj-screen {
+    width: min(100%, var(--pcj-page-max-width));
+    margin: 0 auto;
+}
+
+
+.pcj-panel {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2.25rem;
+    border: 1px solid var(--pcj-border-color);
+    border-radius: var(--pcj-radius-lg);
+    background: var(--pcj-panel-bg);
+    box-shadow: var(--pcj-shadow-soft);
+}
+
+
+.pcj-panel--narrow {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+
+.pcj-panel--text {
+    max-width: var(--pcj-text-max-width);
+    margin: 0 auto;
+}
+
+
+.pcj-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--pcj-gap-md);
+}
+
+
+.pcj-center {
+    text-align: center;
+}
+
+
+.pcj-left {
+    text-align: left;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* 3. Headings and prose                                                      */
+/* -------------------------------------------------------------------------- */
+
+.pcj-title {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.7rem, 2.4vw, 2.3rem);
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+
+.pcj-subtitle {
+    margin: 0 0 1.25rem;
+    font-size: 1.08rem;
+    line-height: 1.5;
+    color: var(--pcj-muted-text-color);
+}
+
+
+.pcj-text {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+
+.pcj-text+.pcj-text {
+    margin-top: 0.8rem;
+}
+
+
+.pcj-muted {
+    color: var(--pcj-muted-text-color);
+}
+
+
+.pcj-emphasis {
+    font-weight: 650;
+}
+
+
+.pcj-small {
+    font-size: 0.94rem;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* 4. Buttons                                                                 */
+/* -------------------------------------------------------------------------- */
+
+.pcj-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem;
+    margin-top: 1.75rem;
+}
+
+
+button.pcj-button,
+.pcj-button {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    min-height: 48px;
+    box-sizing: border-box;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 650;
+    text-decoration: none;
+    transition:
+        background-color 120ms ease,
+        border-color 120ms ease,
+        transform 80ms ease,
+        opacity 120ms ease;
+}
+
+
+button.pcj-button:active,
+.pcj-button:active {
+    transform: translateY(1px);
+}
+
+
+button.pcj-button:disabled,
+.pcj-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    transform: none;
+}
+
+
+.pcj-button--primary {
+    color: var(--pcj-primary-text);
+    background: var(--pcj-primary-bg);
+}
+
+
+.pcj-button--primary:hover:not(:disabled) {
+    background: var(--pcj-primary-bg-hover);
+}
+
+
+.pcj-button--secondary {
+    color: var(--pcj-secondary-text);
+    background: var(--pcj-secondary-bg);
+    border-color: var(--pcj-border-color);
+}
+
+
+.pcj-button--secondary:hover:not(:disabled) {
+    background: var(--pcj-secondary-bg-hover);
+}
+
+
+/*
+ * jsPsych default buttons can be styled to match our system
+ * when we use button-response plugins.
+ */
+.jspsych-btn {
+    min-width: 150px;
+    min-height: 48px;
+    margin: 0.4rem;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    cursor: pointer;
+    background: var(--pcj-primary-bg);
+    color: var(--pcj-primary-text);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 650;
+}
+
+
+.jspsych-btn:hover:not(:disabled) {
+    background: var(--pcj-primary-bg-hover);
+}
+
+
+.jspsych-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* 5. Form fields                                                             */
+/* -------------------------------------------------------------------------- */
+
+.pcj-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 480px;
+    margin: 1.5rem auto 0;
+}
+
+
+.pcj-label {
+    display: block;
+    margin-bottom: 0.45rem;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 650;
+}
+
+
+.pcj-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--pcj-border-color);
+    border-radius: var(--pcj-radius-sm);
+    background: #ffffff;
+    color: var(--pcj-text-color);
+    font-family: inherit;
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+}
+
+
+.pcj-input:focus {
+    outline: 3px solid rgba(31, 79, 130, 0.18);
+    border-color: var(--pcj-primary-bg);
+}
+
+
+.pcj-input--code {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+}
+
+
+.pcj-form-note {
+    margin: 0.25rem 0 0;
+    color: var(--pcj-muted-text-color);
+    font-size: 0.94rem;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* 6. Message boxes                                                           */
+/* -------------------------------------------------------------------------- */
+
+.pcj-message {
+    box-sizing: border-box;
+    margin: 1.25rem auto 0;
+    padding: 1rem 1.15rem;
+    border: 1px solid var(--pcj-border-color);
+    border-radius: var(--pcj-radius-sm);
+    text-align: left;
+    font-size: 0.98rem;
+}
+
+
+.pcj-message p {
+    margin: 0;
+}
+
+
+.pcj-message p+p {
+    margin-top: 0.5rem;
+}
+
+
+.pcj-message--error {
+    border-color: var(--pcj-error-border);
+    background: var(--pcj-error-bg);
+    color: var(--pcj-error-text);
+}
+
+
+.pcj-message--success {
+    border-color: var(--pcj-success-border);
+    background: var(--pcj-success-bg);
+    color: var(--pcj-success-text);
+}
+
+
+.pcj-message--warning {
+    border-color: var(--pcj-warning-border);
+    background: var(--pcj-warning-bg);
+    color: var(--pcj-warning-text);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* 7. Metadata confirmation card                                              */
+/* -------------------------------------------------------------------------- */
+
+.pcj-meta-card {
+    max-width: 580px;
+    margin: 1.5rem auto 0;
+    padding: 1.15rem 1.25rem;
+    border: 1px solid var(--pcj-border-color);
+    border-radius: var(--pcj-radius-md);
+    background: #fbfdff;
+    text-align: left;
+}
+
+
+.pcj-meta-grid {
+    display: grid;
+    grid-template-columns: minmax(150px, 190px) 1fr;
+    row-gap: 0.65rem;
+    column-gap: 1rem;
+    margin: 0;
+}
+
+
+.pcj-meta-grid dt {
+    font-weight: 650;
+    color: var(--pcj-muted-text-color);
+}
+
+
+.pcj-meta-grid dd {
+    margin: 0;
+    font-weight: 550;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* 8. Utility classes                                                         */
+/* -------------------------------------------------------------------------- */
+
+.pcj-spacer-sm {
+    height: 0.75rem;
+}
+
+
+.pcj-spacer-md {
+    height: 1.25rem;
+}
+
+
+.pcj-spacer-lg {
+    height: 2rem;
+}
+
+
+.pcj-hidden {
+    display: none !important;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* 9. Responsive adjustments                                                  */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+    .jspsych-display-element {
+        padding: 1.25rem 0.8rem;
+    }
+
+    .pcj-panel {
+        padding: 1.5rem 1.15rem;
+    }
+
+    .pcj-button-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    button.pcj-button,
+    .pcj-button,
+    .jspsych-btn {
+        width: 100%;
+    }
+
+    .pcj-meta-grid {
+        grid-template-columns: 1fr;
+        row-gap: 0.2rem;
+    }
+
+    .pcj-meta-grid dd {
+        margin-bottom: 0.6rem;
+    }
+}
+/* -------------------------------------------------------------------------- */
+/* Viewport-fit refinement for recording tasks                                */
+/* -------------------------------------------------------------------------- */
+/*
+ * Most experiment screens should fit inside the visible browser window.
+ * This reduces unnecessary vertical spacing so action buttons are not hidden
+ * below the fold.
+ *
+ * Long pedagogical instruction screens may opt out by using:
+ *   pcj-allow-scroll
+ */
+
+.jspsych-display-element {
+    height: 100vh;
+    min-height: 100vh;
+    padding: clamp(0.45rem, 1.2vh, 1rem) clamp(0.6rem, 1.8vw, 1.25rem);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.jspsych-content-wrapper {
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.jspsych-content {
+    width: 100%;
+    max-height: 100%;
+    overflow: visible;
+}
+
+.pcj-screen {
+    min-height: 0;
+    max-height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+.pcj-panel {
+    box-sizing: border-box;
+    padding: clamp(1rem, 2.4vh, 1.65rem);
+    max-height: calc(100vh - 3.2rem);
+}
+
+.pcj-panel--text,
+.pcj-prompt-panel,
+.pcj-carrier-prompt-panel,
+.pcj-ambiguous-prompt-panel {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.pcj-title {
+    margin-bottom: clamp(0.35rem, 1vh, 0.65rem);
+}
+
+.pcj-subtitle {
+    margin-bottom: clamp(0.55rem, 1.4vh, 0.95rem);
+}
+
+.pcj-text + .pcj-text {
+    margin-top: clamp(0.35rem, 0.9vh, 0.65rem);
+}
+
+.pcj-button-row,
+#jspsych-html-button-response-btngroup {
+    margin-top: clamp(0.6rem, 1.6vh, 1.1rem);
+}
+
+.jspsych-btn {
+    min-height: 42px;
+    padding: 0.55rem 1.05rem;
+    margin: 0.25rem;
+}
+
+/* Keep audio controls compact on review screens. */
+audio {
+    max-width: 100%;
+}
+
+/* Explicit opt-out for genuinely long instruction pages. */
+.pcj-allow-scroll {
+    max-height: none;
+    overflow: visible;
+}
+
+.pcj-allow-scroll .pcj-screen,
+.pcj-allow-scroll.pcj-screen {
+    max-height: none;
+    align-items: flex-start;
+}
+
+.pcj-allow-scroll .pcj-panel,
+.pcj-allow-scroll.pcj-panel {
+    max-height: none;
+    overflow: visible;
+}
+
+/* Extra protection on short-height laptop windows. */
+@media (max-height: 760px) {
+    .jspsych-display-element {
+        padding-top: 0.35rem;
+        padding-bottom: 0.35rem;
+    }
+
+    .pcj-panel {
+        padding: 0.9rem 1rem;
+    }
+
+    .pcj-title {
+        font-size: 1.45rem;
+    }
+
+    .pcj-subtitle {
+        margin-bottom: 0.55rem;
+    }
+
+    .jspsych-btn {
+        min-height: 38px;
+        padding: 0.45rem 0.9rem;
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Viewport safety override: compact layout, but never clip jsPsych buttons    */
+/* -------------------------------------------------------------------------- */
+/*
+ * Important:
+ * jsPsych button groups are often rendered outside the stimulus HTML.
+ * Therefore, screen/panel max-height rules must not make the page unscrollable.
+ *
+ * Goal:
+ *   - reduce unnecessary whitespace;
+ *   - keep ordinary screens visually centered;
+ *   - preserve scrolling whenever content or jsPsych buttons exceed viewport.
+ */
+
+html,
+body {
+    min-height: 100%;
+    overflow-y: auto;
+}
+
+.jspsych-display-element {
+    min-height: 100vh;
+    overflow-y: auto;
+    padding: clamp(0.35rem, 1vh, 0.85rem) clamp(0.5rem, 1.4vw, 1rem);
+    box-sizing: border-box;
+}
+
+.jspsych-content-wrapper {
+    min-height: calc(100vh - 1.7rem);
+    height: auto;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jspsych-content {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+}
+
+.pcj-screen {
+    min-height: auto;
+    max-height: none;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+.pcj-panel,
+.pcj-panel--text,
+.pcj-prompt-panel,
+.pcj-carrier-prompt-panel,
+.pcj-ambiguous-prompt-panel {
+    max-height: none;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+/*
+ * The jsPsych button group must always remain reachable.
+ * It is often inserted after the stimulus, not inside .pcj-panel.
+ */
+#jspsych-html-button-response-btngroup {
+    position: relative;
+    z-index: 10;
+    margin-top: clamp(0.55rem, 1.4vh, 1rem);
+    margin-bottom: clamp(0.35rem, 1vh, 0.8rem);
+}
+
+.jspsych-btn {
+    min-height: 42px;
+    padding: 0.55rem 1.05rem;
+    margin: 0.25rem;
+}
+
+/*
+ * For genuinely long instruction screens, scrolling remains normal.
+ */
+.pcj-allow-scroll,
+.pcj-allow-scroll .pcj-screen,
+.pcj-allow-scroll .pcj-panel {
+    max-height: none;
+    overflow: visible;
+}
+
+/*
+ * Short-height laptop windows: make panels/buttons more compact,
+ * but still allow scrolling if needed.
+ */
+@media (max-height: 760px) {
+    .jspsych-display-element {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+    }
+
+    .jspsych-content-wrapper {
+        min-height: calc(100vh - 0.5rem);
+    }
+
+    .pcj-panel {
+        padding-top: 0.85rem;
+        padding-bottom: 0.85rem;
+    }
+
+    .pcj-title {
+        margin-bottom: 0.35rem;
+    }
+
+    .pcj-subtitle {
+        margin-bottom: 0.55rem;
+    }
+
+    #jspsych-html-button-response-btngroup {
+        margin-top: 0.45rem;
+        margin-bottom: 0.45rem;
+    }
+}
+

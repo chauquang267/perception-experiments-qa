@@ -1,0 +1,120 @@
+/*
+ * PAM-S progress/scroll guard.
+ *
+ * This carries forward the validated AX browser corrections that are generic to
+ * perception instruction pages: keep the jsPsych progress display as a thin,
+ * text-free track; centre short participant pages; and allow long pages to
+ * scroll naturally without clipping the plugin-generated Continue button.
+ */
+
+.jspsych-display-element {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.jspsych-content-wrapper {
+  height: auto;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+#jspsych-progressbar-container {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  flex: 0 0 8px;
+  align-self: center;
+  width: min(calc(100% - 1.5rem), 900px);
+  min-height: 8px;
+  height: 8px;
+  margin: 0 auto 0.7rem;
+  overflow: visible;
+}
+
+#jspsych-progressbar-container > span {
+  display: none !important;
+}
+
+#jspsych-progressbar-outer {
+  display: block !important;
+  width: 100%;
+  height: 8px;
+  box-sizing: border-box;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #b8c7d4;
+  border-radius: 999px;
+  background: #dce5ed;
+  box-shadow: inset 0 1px 2px rgba(31, 41, 51, 0.10);
+}
+
+#jspsych-progressbar-inner {
+  display: block !important;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--pcj-primary-bg, #1f4f82);
+}
+
+/*
+ * Adaptive instruction-page layout:
+ * - short friendly pages remain vertically centred;
+ * - long friendly pages start at the top and scroll as one unit;
+ * - the jsPsych response controls remain reachable below the stimulus content;
+ * - ordinary stimulus/response screens keep the compact fixed-viewport layout.
+ *
+ * `safe center` is deliberate. Plain flex centring can create negative overflow
+ * when a tall instruction panel is larger than the viewport, which makes the
+ * beginning of the page impossible to reach by scrolling upward.
+ */
+.jspsych-display-element:has(.pcj-friendly-panel) .jspsych-content-wrapper,
+.jspsych-display-element:has(.pams-open-ended-panel) .jspsych-content-wrapper {
+  height: auto;
+  min-height: 0;
+  flex: 1 1 auto;
+  align-items: stretch;
+  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+}
+
+.jspsych-display-element:has(.pcj-friendly-panel) .jspsych-content,
+.jspsych-display-element:has(.pams-open-ended-panel) .jspsych-content {
+  min-height: 100%;
+  max-height: none;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: safe center;
+  overflow: visible;
+  padding-bottom: 0.8rem;
+}
+
+.jspsych-display-element:has(.pcj-friendly-panel) .pcj-screen,
+.jspsych-display-element:has(.pams-open-ended-panel) .pcj-screen {
+  max-height: none;
+  flex: 0 0 auto;
+  align-items: center;
+  overflow: visible;
+}
+
+.jspsych-display-element:has(.pcj-friendly-panel) .pcj-friendly-panel,
+.jspsych-display-element:has(.pams-open-ended-panel) .pams-open-ended-panel {
+  max-height: none;
+  overflow: visible;
+}
+
+@media (max-width: 640px) {
+  #jspsych-progressbar-container {
+    flex-basis: 7px;
+    width: min(calc(100% - 1rem), 900px);
+    min-height: 7px;
+    height: 7px;
+    margin-bottom: 0.55rem;
+  }
+
+  #jspsych-progressbar-outer {
+    height: 7px;
+  }
+}

@@ -1,0 +1,341 @@
+/* Mapping-specific presentation layered on shared.css + perception.css. */
+
+/* Keep the technical participant-code page genuinely centred, including text. */
+.pcj-entry-panel {
+  text-align: center;
+}
+
+.pcj-entry-panel .pcj-label {
+  text-align: center;
+}
+
+.pams-interpretive-note {
+  max-width: 760px;
+  margin: 1rem auto 0;
+  padding: 0.8rem 1rem;
+  border-left: 4px solid #b8c7d4;
+  background: #f7f9fb;
+  color: #40576a;
+  font-size: 0.96rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.pams-category-guide {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+  max-width: 820px;
+  margin: 1rem auto 0;
+}
+
+.pams-category-guide-row {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid #d8e4ef;
+  border-radius: 14px;
+  background: #ffffff;
+  text-align: left;
+}
+
+.pams-category-guide-row--uncertain {
+  grid-column: 1 / -1;
+  background: #f7f9fb;
+}
+
+.pams-category-guide-label {
+  color: var(--pcj-primary-bg);
+  font-size: 1rem;
+  font-weight: 760;
+}
+
+.pams-category-guide-description {
+  margin-top: 0.28rem;
+  color: #40576a;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.pams-category-preview {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+  max-width: 680px;
+  margin: 1.15rem auto 0;
+}
+
+.pams-category-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0.28rem 0.8rem;
+  border: 1px solid #d8e4ef;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #31475a;
+  font-size: 0.88rem;
+  font-weight: 680;
+}
+
+.pams-category-chip--uncertain {
+  background: #f6f8fa;
+  color: var(--pcj-muted-text-color);
+}
+
+/*
+ * jsPsych's audio-button plugin emits the button group before `prompt` in the
+ * DOM. For PAM-S the question should be read first, then the response options.
+ * Reorder those two direct children visually without changing response logic.
+ */
+.jspsych-content:has(.pams-category-prompt) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pams-category-prompt {
+  order: 1;
+  width: min(88vw, 720px);
+  margin: 0 auto 1rem;
+  box-sizing: border-box;
+  padding: 1.15rem 1.35rem;
+  border: 1px solid var(--pcj-border-color);
+  border-radius: var(--pcj-radius-lg);
+  background: rgba(255, 255, 255, 0.97);
+  color: #31475a;
+  box-shadow:
+    0 16px 42px rgba(31, 41, 51, 0.07),
+    0 2px 8px rgba(31, 41, 51, 0.035);
+  text-align: center;
+}
+
+.pams-listen-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0.22rem 0.72rem;
+  border: 1px solid #d8e4ef;
+  border-radius: 999px;
+  background: #f6f9fc;
+  color: var(--pcj-muted-text-color);
+  font-size: 0.78rem;
+  font-weight: 730;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pams-category-question {
+  margin-top: 0.75rem;
+  font-size: clamp(1.08rem, 2vw, 1.25rem);
+  font-weight: 720;
+  line-height: 1.45;
+}
+
+/*
+ * The plugin defaults to one row for five buttons and writes that grid template
+ * inline. Override it intentionally: 2 + 2 + centred `Incertain / Autre` is
+ * easier to scan and prevents long French labels from being squeezed.
+ */
+#jspsych-audio-button-response-btngroup {
+  order: 2;
+  width: min(90vw, 760px);
+  margin: 0 auto;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-rows: auto !important;
+  gap: 0.75rem;
+}
+
+#jspsych-audio-button-response-btngroup > .jspsych-btn {
+  width: 100%;
+  min-width: 0;
+  min-height: 58px;
+  margin: 0;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid #d7e2ec;
+  border-radius: 16px;
+  background: #ffffff;
+  color: var(--pcj-text-color);
+  box-shadow:
+    0 8px 20px rgba(31, 41, 51, 0.055),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  font-size: clamp(0.9rem, 1.5vw, 0.98rem);
+  font-weight: 700;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+#jspsych-audio-button-response-btngroup > .jspsych-btn:hover:not(:disabled) {
+  border-color: #aac3da;
+  background: #f6faff;
+  color: var(--pcj-primary-bg);
+  box-shadow: 0 12px 25px rgba(31, 79, 130, 0.10);
+}
+
+#jspsych-audio-button-response-btngroup > .jspsych-btn:nth-child(5) {
+  grid-column: 1 / -1;
+  width: min(100%, 360px);
+  justify-self: center;
+  background: #f7f9fb;
+  color: var(--pcj-muted-text-color);
+  box-shadow: none;
+}
+
+.pams-goodness-panel {
+  max-width: 700px;
+}
+
+.pams-goodness-title {
+  max-width: 590px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: clamp(1.45rem, 2.6vw, 1.9rem);
+}
+
+.pams-selected-category {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-width: 0;
+  min-height: 40px;
+  box-sizing: border-box;
+  margin: 0.35rem auto 1rem;
+  padding: 0.35rem 1rem;
+  border: 1px solid #d8e4ef;
+  border-radius: 999px;
+  background: #f6f9fc;
+  color: var(--pcj-primary-bg);
+  font-size: 1.08rem;
+  font-weight: 750;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.pams-goodness-anchors {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  width: min(86vw, 540px);
+  margin: 1rem auto 0.5rem;
+  color: var(--pcj-muted-text-color);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+#jspsych-html-button-response-stimulus:has(.pams-goodness-anchors)
+  + #jspsych-html-button-response-btngroup {
+  display: flex !important;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+#jspsych-html-button-response-stimulus:has(.pams-goodness-anchors)
+  + #jspsych-html-button-response-btngroup .jspsych-html-button-response-button {
+  margin: 0;
+}
+
+#jspsych-html-button-response-stimulus:has(.pams-goodness-anchors)
+  + #jspsych-html-button-response-btngroup .jspsych-btn {
+  min-width: 48px;
+  width: 48px;
+  min-height: 48px;
+  height: 48px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.pams-open-ended-panel {
+  max-width: 760px;
+  margin-bottom: 0.3rem;
+}
+
+#jspsych-survey-text-form {
+  box-sizing: border-box;
+  width: min(90vw, 760px);
+  margin: 0 auto;
+  padding: 0 1rem 1rem;
+  text-align: left;
+}
+
+#jspsych-survey-text-form .jspsych-survey-text-question {
+  margin: 0.6rem 0 1rem !important;
+}
+
+#jspsych-survey-text-form .jspsych-survey-text-question p {
+  margin: 0 0 0.8rem;
+  color: #40576a;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+#jspsych-survey-text-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-height: 130px;
+  resize: vertical;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid #c7d5e1;
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--pcj-text-color);
+  font: inherit;
+  line-height: 1.45;
+}
+
+#jspsych-survey-text-next {
+  display: block;
+  margin: 0.9rem auto 0;
+}
+
+@media (max-width: 640px) {
+  .pams-category-guide {
+    grid-template-columns: 1fr;
+  }
+
+  .pams-category-guide-row--uncertain {
+    grid-column: auto;
+  }
+
+  #jspsych-audio-button-response-btngroup {
+    grid-template-columns: 1fr !important;
+    gap: 0.6rem;
+  }
+
+  #jspsych-audio-button-response-btngroup > .jspsych-btn:nth-child(5) {
+    grid-column: auto;
+    width: 100%;
+  }
+
+  .pams-category-preview {
+    gap: 0.4rem;
+  }
+
+  .pams-category-chip {
+    font-size: 0.82rem;
+  }
+
+  .pams-goodness-anchors {
+    gap: 0.8rem;
+    font-size: 0.82rem;
+  }
+
+  #jspsych-html-button-response-stimulus:has(.pams-goodness-anchors)
+    + #jspsych-html-button-response-btngroup {
+    gap: 0.28rem;
+  }
+
+  #jspsych-html-button-response-stimulus:has(.pams-goodness-anchors)
+    + #jspsych-html-button-response-btngroup .jspsych-btn {
+    min-width: 40px;
+    width: 40px;
+    min-height: 40px;
+    height: 40px;
+  }
+}

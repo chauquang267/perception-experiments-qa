@@ -1,0 +1,15 @@
+{
+  "deployment_variant": "github_pages_datapipe",
+  "activation_state": "QA_ONLY_NOT_APPROVED_FOR_RECRUITMENT",
+  "reference_release_id": "llf-perception-ee3e20e8d754-20260926T140500Z",
+  "reference_source_git_commit": "ee3e20e8d7540ee2ee745c0ce954b26f4c5fbf06",
+  "reference_manifest_sha256": "eab1cbb1c1514a13bbdf7dc7c26323893ad6e5da75f5807e4277f63e69d22198",
+  "source_generated_file_count": 444,
+  "publication_delta": [
+    "QA notice in index.html",
+    "robots noindex",
+    "robots.txt",
+    ".nojekyll",
+    "private-folder-bearing deployment manifest excluded"
+  ]
+}

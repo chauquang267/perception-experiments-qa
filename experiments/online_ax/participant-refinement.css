@@ -1,0 +1,28 @@
+/*
+ * AX participant-facing refinements added after the first full v0.7 technical run.
+ * These are presentation-only: no trial timing, response mapping, or scoring logic.
+ */
+
+.ax-initial-scroll-note {
+  margin: 1rem auto 0;
+  max-width: 760px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.ax-deadline-emphasis {
+  color: #b42318;
+  font-weight: 850;
+}
+
+.ax-practice-feedback {
+  box-sizing: border-box;
+  width: min(90vw, 720px);
+  margin: 0 auto;
+  padding: 1.2rem 1.4rem;
+  border-radius: 16px;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.35;
+  text-align: center;
+}

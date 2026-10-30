@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Association à une mélodie française</title>
+  <link rel="icon" href="data:," />
+
+  <script src="../../vendor/jspsych/jspsych.js"></script>
+  <link rel="stylesheet" href="../../vendor/jspsych/jspsych.css" />
+  <script src="../../vendor/jspsych/plugin-preload.js"></script>
+  <script src="../../vendor/jspsych/plugin-browser-check.js"></script>
+  <script src="../../vendor/jspsych/plugin-html-button-response.js"></script>
+  <script src="../../vendor/jspsych/plugin-html-keyboard-response.js"></script>
+  <script src="../../vendor/jspsych/plugin-audio-button-response.js"></script>
+  <script src="../../vendor/jspsych/plugin-survey-text.js"></script>
+  <script src="../../vendor/jspsych/plugin-call-function.js"></script>
+
+  <link rel="stylesheet" href="../../assets/css/shared.css" />
+  <link rel="stylesheet" href="../../assets/css/perception.css" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./progress.css" />
+  <style>
+    /* The governing instructions are intentionally detailed. Keep the full
+       familiarization visible without making the participant-facing screen
+       feel oversized on laptop displays. */
+    .pcj-panel:has(.pams-category-guide) {
+      width: min(94vw, 980px);
+      max-width: 980px;
+      padding: 1.15rem 1.3rem;
+    }
+    .pcj-panel:has(.pams-category-guide) .pcj-title {
+      font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+      line-height: 1.18;
+    }
+    .pcj-panel:has(.pams-category-guide) .pcj-subtitle {
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 0.94rem;
+      line-height: 1.48;
+    }
+    .pcj-panel:has(.pams-category-guide) .pcj-step-title {
+      font-size: 0.92rem;
+    }
+    .pcj-panel:has(.pams-category-guide) .pcj-step-text {
+      font-size: 0.87rem;
+      line-height: 1.42;
+    }
+    @media (max-height: 780px) and (min-width: 641px) {
+      .pcj-panel:has(.pams-category-guide) {
+        padding-top: 0.9rem;
+        padding-bottom: 0.9rem;
+      }
+      .pams-category-guide {
+        margin-top: 0.7rem;
+        gap: 0.5rem;
+      }
+      .pams-category-guide-row {
+        padding: 0.58rem 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    (function () {
+      var requestedSaveContext =
+        new URLSearchParams(window.location.search).get("config") || "test";
+      if (requestedSaveContext !== "pages") {
+        document.write(
+          '<script src="../../assets/js/save-utils-local.js"><\/script>'
+        );
+      }
+    })();
+  </script>
+  
+  <script src="../../assets/js/save-utils-online.js"></script>
+  <script src="../../assets/js/save-router.js"></script>
+  <script src="../../assets/js/participant-utils.js"></script>
+  <script src="../../assets/js/runtime-data-utils.js"></script>
+  <script src="../../assets/js/supervisor-preview.js"></script>
+  <script src="../../assets/js/perception-runtime-utils.js"></script>
+
+  <script>
+    /*
+     * ?config=test -> technical browser runtime with placeholder audio.
+     * ?config=test&full=1&supervisor_preview=1 -> full technical supervisor preview.
+     * ?config=scientific -> local scientific-stimulus browser rehearsal.
+     * ?config=llf -> LLF hosted participant-ready runtime with scientific stimuli.
+     * Valid pilot/main participant codes execute the complete scientific order automatically.
+     * Reserved 00999NNN codes remain available for technical QA.
+     * ?full=1 affects reserved technical QA only; participant runs are always complete.
+     */
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var requested = params.get("config") || "test";
+
+      if (requested !== "pages") {
+        window.PERCEPTION_CONFIG_ERROR =
+          "PAM-S config must be config=test, config=scientific, or config=llf.";
+      }
+
+      document.documentElement.lang = "fr";
+      document.write('<script src="./config_test.js"><\/script>');
+      if (requested === "scientific" || requested === "pages") {
+        document.write('<script src="./config_scientific.js"><\/script>');
+      }
+      if (requested === "pages") {
+        document.write('<script src="./config_pages.js"><\/script>');
+      }
+      if (window.ProsodySupervisorPreview.requested()) {
+        document.write(
+          '<script>window.ONLINE_PAMS_CONFIG = window.ProsodySupervisorPreview.applyPerception(window.ONLINE_PAMS_CONFIG, { documentTitle: "Association à une mélodie française" });<\/script>'
+        );
+      }
+    })();
+  </script>
+  <script src="./final-save-provenance.js"></script>
+  <script src="./experiment.js"></script>
+</body>
+</html>
